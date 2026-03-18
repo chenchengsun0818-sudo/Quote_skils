@@ -1,0 +1,33 @@
+{
+  "name": "generate_quote_excel",
+  "description": "当用户要求获取产品报价、核算价格或生成报价单时，调用此工具。它能自动查询产品价格，计算折扣，并生成包含 Excel 公式和样式的标准报价单文件。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "customer": {
+        "type": "string",
+        "description": "客户的公司名称。如果用户未提及，请使用 '未命名客户'。"
+      },
+      "project": {
+        "type": "string",
+        "description": "项目名称。如果用户未提及，请使用 '常规设备采购'。"
+      },
+      "sku_list": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "用户需要报价的产品型号（SKU）列表。必须提取确切的型号，例如 ['FG-201G', 'FC-10-F2H1G-928-02-12']。注意：即使包含 '+' 号也要完整提取。"
+      },
+      "discount": {
+        "type": "number",
+        "description": "用户要求的折扣百分比（如 35 表示 35折/35% off）。如果用户未明确说明折扣，必须默认传入 35.0。"
+      }
+    },
+    "required": [
+      "customer",
+      "project",
+      "sku_list"
+    ]
+  }
+}
